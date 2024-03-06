@@ -1,35 +1,118 @@
-.alinea1{
-margin-left:  730px;
-color: grey;
+* {
+  box-sizing: border-box;
 }
 
-.header1{
-    margin-left: 660px;
-}
-
-
-
-.pagination{
-
-    justify-content: center;
-
-
-}
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    margin-left: 100px;
-    background-color: beige;
-    background-image: url("10698.webp");
+  background-color: #8b8989;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  gap: 30px; /* Add gap between cards */
+  padding: 100px; /* Add padding around cards */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Use grid layout with auto-fit columns */
+  margin: 0; /* Remove default margin */
 }
 
-.alinea1 {
-    color: blue;
+header {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  padding: 20px;
+  position: fixed; /* Fix the header at the top */
+  width: 100%; /* Occupy full width of viewport */
+  top: 0; /* Position at the top */
+  z-index: 1000; /* Ensure the header appears above other elements */
 }
 
-.alinea2 {
-    color: red;
+header h1 {
+  margin: 0;
+}
+
+nav ul {
+
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.card {
+  width: 80%;
+  margin-top: 5vh;
+  outline: 5px solid rgb(38, 36, 63);
+  --blur: 16px ;
+  --size: clamp(300px, 50vmin, 600px);
+  aspect-ratio: 4 / 3;
+  position: relative;
+  border-radius: 2rem;
+  overflow: hidden;
+  color: black;
+  transform: translateZ(0);
+}
+
+.card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(calc(1 + (var(--hover, 0) * 0.25))) rotate(calc(var(--hover, 0) * -5deg));
+  transition: transform 0.2s;
+}
+
+.card__footer {
+padding: 0 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: red;
+  display: grid;
+  grid-template-row: auto auto;
+  gap: 0.5ch;
+  background: hsl(0 0% 100% / 0.5);
+  backdrop-filter: blur(var(--blur));
+  height: 30%;
+  align-content: center;
 }
 
 
 
+
+
+.card__action {
+  position: absolute;
+  aspect-ratio: 1;
+  width: calc(var(--size) * 0.15);
+  bottom: 30%;
+  right: 1.5rem;
+  transform: translateY(50%) translateY(calc((var(--size) * 0.4))) translateY(calc(var(--hover, 0) * (var(--size) * -0.4)));
+  background: purple;
+  display: grid;
+  place-items: center;
+  border-radius: 0.5rem;
+  background: hsl(0 0% 100% / 0.5);
+  transition: transform 0.2s;
+}
+
+.card__action svg {
+  aspect-ratio: 1;
+  width: 50%;
+}
+
+.card__footer span:nth-of-type(1) {
+  font-size: calc(var(--size) * 0.065);
+}
+
+.card__footer span:nth-of-type(2) {
+  font-size: calc(var(--size) * 0.035);
+}
+
+.card:is(:hover, :focus-visible) {
+  --hover: 1;
+}
